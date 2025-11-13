@@ -51,31 +51,13 @@ export const services = [
 export const projects = [
   {
     id: 1,
-    title: "AI-Powered Customer Service Platform",
-    description: "Developed an intelligent chatbot system that reduced customer response time by 70% for a Fortune 500 company.",
-    category: "AI Development",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Cloud Migration for E-Commerce",
-    description: "Successfully migrated a large-scale e-commerce platform to AWS, improving performance by 50%.",
-    category: "Cloud Integration",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Enterprise Automation Suite",
-    description: "Implemented RPA solutions that automated 80% of manual processes for a financial institution.",
-    category: "Automation",
-    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&h=600&fit=crop"
-  },
-  {
-    id: 4,
-    title: "Healthcare Analytics Dashboard",
-    description: "Built a real-time analytics platform for healthcare providers to track patient outcomes.",
-    category: "Data Analytics",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop"
+    title: "KejeHub",
+    description: "A comprehensive web development system designed to streamline project management, collaboration, and deployment workflows. Built with modern technologies for optimal performance and user experience.",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    link: "https://kejehub.com/",
+    status: "Live",
+    technologies: ["ReactJs","Vite", "Node.js", "MySQL", "Material UI", "ApexChart"]
   }
 ];
 
