@@ -14,6 +14,9 @@ const Contact = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,12 +24,40 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '3f7d0989-8529-435a-a846-8689050ab0d3',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Contact Form Submission from ${formData.name}`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -106,13 +137,39 @@ const Contact = () => {
 
               <motion.button
                 type="submit"
-                className="w-full bg-brand-accent px-10 py-5 rounded-full text-white font-bold text-lg hover:shadow-glow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
+                className={`w-full px-10 py-5 rounded-full text-white font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${
+                  isSubmitting 
+                    ? 'bg-gray-600 cursor-not-allowed' 
+                    : 'bg-brand-accent hover:shadow-glow-lg'
+                }`}
+                whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               >
-                Send Message
-                <Send className="w-5 h-5" />
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {!isSubmitting && <Send className="w-5 h-5" />}
               </motion.button>
+
+              {/* Success/Error Messages */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center"
+                >
+                  ✓ Thank you! Your message has been sent successfully. We'll get back to you soon!
+                </motion.div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-400 text-center"
+                >
+                  ✗ Oops! Something went wrong. Please try again or email us directly.
+                </motion.div>
+              )}
             </form>
           </motion.div>
 
