@@ -4,9 +4,9 @@ export const companyInfo = {
   name: "AiTech Nexa",
   tagline: "Empowering the Future with AI-Driven Solutions",
   description: "A fresh startup helping businesses innovate with intelligent technology and modern development expertise.",
-  email: "contact@aitechnexxa.com",
+  email: "aitechnexa@gmail.com",
   phone: "+6012-3063642",
-  address: "123 Innovation Drive, Tech Valley, CA 94025",
+  address: "Selangor, Malaysia",
   social: {
     linkedin: "https://linkedin.com/company/aitechnexxa",
     github: "https://github.com/aitechnexxa",
