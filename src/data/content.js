@@ -107,26 +107,26 @@ export const technologies = [
 export const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    position: "CTO, TechCorp Inc.",
-    company: "TechCorp",
-    feedback: "AiTech Nexa transformed our business with their AI solutions. The team's expertise and dedication are unmatched.",
+    name: "Azka Afiq",
+    position: "Worker",
+    company: "Kedai Emas Mohd Zaid Puteh",
+    feedback: "AiTech Nexa transformed our business with their solutions. The team's expertise and dedication are unmatched.",
     rating: 5
   },
   {
     id: 2,
-    name: "Michael Chen",
-    position: "CEO, InnovateLabs",
-    company: "InnovateLabs",
+    name: "Nadia",
+    position: "Worker",
+    company: "Kedai Emas Mohd Zaid Puteh",
     feedback: "Outstanding service and cutting-edge technology. They delivered beyond our expectations and on time.",
     rating: 5
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    position: "Director of IT, GlobalFinance",
-    company: "GlobalFinance",
-    feedback: "The automation solutions provided by AiTech Nexa have saved us countless hours and significantly reduced costs.",
+    name: "Nurul Aminah",
+    position: "Worker",
+    company: "Kedai Emas Mohd Zaid Puteh",
+    feedback: "The solutions provided by AiTech Nexa have saved us countless hours and significantly reduced costs.",
     rating: 5
   }
 ];
