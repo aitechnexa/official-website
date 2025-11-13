@@ -69,22 +69,37 @@ export const technologies = [
   { name: "TypeScript", icon: "SiTypescript" },
   { name: "Tailwind CSS", icon: "SiTailwindcss" },
   { name: "Bootstrap", icon: "FaBootstrap" },
+  { name: "Material UI", icon: "SiMui" },
   { name: "Quasar", icon: "SiQuasar" },
   
   // Backend
   { name: "Node.js", icon: "FaNodeJs" },
   { name: "Express.js", icon: "SiExpress" },
   { name: "Python", icon: "FaPython" },
+  { name: "Flask", icon: "SiFlask" },
+  { name: "FastAPI", icon: "SiFastapi" },
   
-  // Database
+  // Database & ORM
   { name: "PostgreSQL", icon: "SiPostgresql" },
   { name: "MySQL", icon: "SiMysql" },
+  { name: "SQLAlchemy", icon: "SiSqlalchemy" },
   
   // Data Visualization
   { name: "ApexCharts", icon: "FaChartLine" },
   
-  // AI/ML & Cloud
+  // Animation
+  { name: "Framer Motion", icon: "SiFramer" },
+  { name: "GSAP", icon: "SiGreensock" },
+  
+  // AI/ML & LLM
   { name: "TensorFlow", icon: "SiTensorflow" },
+  { name: "LangChain", icon: "SiLangchain" },
+  { name: "LangGraph", icon: "SiLangchain" },
+  
+  // API & Documentation
+  { name: "OpenAPI", icon: "SiOpenapiinitiative" },
+  
+  // Cloud & DevOps
   { name: "AWS", icon: "FaAws" },
   { name: "Docker", icon: "FaDocker" }
 ];

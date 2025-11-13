@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { technologies } from '../data/content';
 // Import all technology icons
 import { FaReact, FaVuejs, FaAngular, FaBootstrap, FaNodeJs, FaPython, FaAws, FaDocker, FaChartLine } from 'react-icons/fa';
-import { SiTypescript, SiTailwindcss, SiExpress, SiPostgresql, SiMysql, SiTensorflow, SiQuasar } from 'react-icons/si';
+import { SiTypescript, SiTailwindcss, SiExpress, SiPostgresql, SiMysql, SiTensorflow, SiQuasar, SiFlask, SiFastapi, SiSqlalchemy, SiLangchain, SiOpenapiinitiative, SiMui, SiFramer, SiGreensock } from 'react-icons/si';
 
 // Icon mapping object
 const iconMap = {
@@ -14,14 +14,22 @@ const iconMap = {
   SiTypescript,
   SiTailwindcss,
   FaBootstrap,
+  SiMui,
   SiQuasar,
   FaNodeJs,
   SiExpress,
   FaPython,
+  SiFlask,
+  SiFastapi,
   SiPostgresql,
   SiMysql,
+  SiSqlalchemy,
   FaChartLine,
+  SiFramer,
+  SiGreensock,
   SiTensorflow,
+  SiLangchain,
+  SiOpenapiinitiative,
   FaAws,
   FaDocker
 };
