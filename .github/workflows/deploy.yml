@@ -45,7 +45,7 @@ jobs:
         uses: appleboy/ssh-action@v1.2.0
         env:
           IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/official-website:latest
-          CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+          CONTAINER_NAME: aitechnexa-official-website
           GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
         with:
@@ -55,11 +55,11 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           envs: IMAGE_NAME,CONTAINER_NAME,GHCR_USERNAME,GHCR_TOKEN
           script: |
-            sudo docker login ghcr.io -u "$GHCR_USERNAME" -p "$GHCR_TOKEN"
-            sudo docker pull "$IMAGE_NAME"
-            sudo docker stop "$CONTAINER_NAME" || true
-            sudo docker rm "$CONTAINER_NAME" || true
-            sudo docker run -d \
+            docker login ghcr.io -u "$GHCR_USERNAME" -p "$GHCR_TOKEN"
+            docker pull "$IMAGE_NAME"
+            docker stop "$CONTAINER_NAME" || true
+            docker rm "$CONTAINER_NAME" || true
+            docker run -d \
               --name "$CONTAINER_NAME" \
               -p 127.0.0.1:4173:4173 \
               --restart unless-stopped \
