@@ -14,3 +14,35 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Running with Docker
+
+### Build image
+
+```bash
+docker build -t official-website .
+```
+
+### Run container locally
+
+This will serve the built static site on port `4173` in the container and map it to `localhost:4173` on your machine:
+
+```bash
+docker run --rm -p 4173:4173 official-website
+```
+
+Open the app at:
+
+- http://localhost:4173
+
+In production on an Ubuntu server, you can bind the container only to localhost and let nginx reverse proxy to it, for example:
+
+```bash
+docker run -d \
+  --name official-website \
+  -p 127.0.0.1:4173:4173 \
+  --restart unless-stopped \
+  ghcr.io/<owner>/official-website:latest
+```
+
+Then configure nginx on the host to proxy to `127.0.0.1:4173`.
