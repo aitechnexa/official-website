@@ -67,8 +67,8 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="flex items-center justify-center mb-6"
         >
-          <Sparkles className="text-brand-accent mr-2 animate-pulse" size={24} />
-          <span className="text-brand-accent font-bold text-lg tracking-wide">Welcome to the Future</span>
+          {/* <Sparkles className="text-brand-accent mr-2 animate-pulse" size={24} /> */}
+          {/* <span className="text-brand-accent font-bold text-lg tracking-wide">Welcome to the Future</span> */}
         </motion.div>
 
         <motion.h1
