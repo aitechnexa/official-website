@@ -58,6 +58,16 @@ export const projects = [
     link: "https://kejehub.com/",
     status: "Live",
     technologies: ["ReactJs","Vite", "Node.js", "MySQL", "Material UI", "ApexChart"]
+  },
+  {
+    id: 2,
+    title: "Database Query Assistant",
+    description: "A simple AI assistant for querying data within databases to get insights and information. Leverages advanced language models to translate natural language queries into database operations.",
+    category: "AI Development",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    link: "#",
+    status: "Prototype",
+    technologies: ["React", "OpenGPT-4", "LangGraph", "FastAPI", "Docker", "SQLAlchemy"]
   }
 ];
 
