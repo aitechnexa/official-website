@@ -8,10 +8,11 @@ export const companyInfo = {
   phone: "+6012-3063642",
   address: "Selangor, Malaysia",
   social: {
-    linkedin: "https://linkedin.com/company/aitechnexxa",
-    github: "https://github.com/aitechnexxa",
-    facebook: "https://facebook.com/aitechnexxa",
-    twitter: "https://twitter.com/aitechnexxa",
+    // Add your social media links here when created
+    // linkedin: "https://linkedin.com/company/aitechnexxa",
+    // github: "https://github.com/aitechnexxa",
+    // facebook: "https://facebook.com/aitechnexxa",
+    // twitter: "https://twitter.com/aitechnexxa",
   }
 };
 
