@@ -4,7 +4,7 @@ export const companyInfo = {
   name: "AiTech Nexa",
   tagline: "Empowering the Future with AI-Driven Solutions",
   description: "A fresh startup helping businesses innovate with intelligent technology and modern development expertise.",
-  email: "aitechnexa@gmail.com",
+  email: "admin@aitechnexa.com",
   phone: "+6012-3063642",
   address: "Selangor, Malaysia",
   social: {
