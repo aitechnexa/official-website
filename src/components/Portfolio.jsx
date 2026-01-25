@@ -28,7 +28,7 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Featured Product - Centered Single Card */}
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-6 flex-wrap">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -36,7 +36,7 @@ const Portfolio = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               whileHover={{ y: -10 }}
-              className="group relative overflow-hidden rounded-2xl glass-card glass-card-hover max-w-2xl w-full"
+              className="group relative overflow-hidden rounded-2xl glass-card glass-card-hover flex-1 min-w-[400px] max-w-[550px]"
             >
               {/* Project Image */}
               <div className="relative h-64 overflow-hidden">
