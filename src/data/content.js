@@ -69,6 +69,26 @@ export const projects = [
     link: "#",
     status: "Prototype",
     technologies: ["React", "OpenGPT-4", "LangGraph", "FastAPI", "Docker", "SQLAlchemy"]
+  },
+  {
+    id: 3,
+    title: "Pawwfectstay",
+    description: "A comprehensive pet booking hotel system where multiple vendors can register their pet shops to the platform. Users can easily book various pet services including hotel accommodations and grooming services for their beloved pets.",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&h=600&fit=crop",
+    link: "#",
+    status: "In Development",
+    technologies: ["React", "Vite", "FastAPI", "PostgreSQL", "ApexChart"]
+  },
+  {
+    id: 4,
+    title: "MyPewai",
+    description: "An outdoor activities booking system that enables users to discover and book exciting outdoor adventures. From hiking and camping to water sports and adventure activities, users can easily browse and reserve their next outdoor experience.",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
+    link: "#",
+    status: "In Development",
+    technologies: ["React", "Vite", "FastAPI", "PostgreSQL", "ApexChart"]
   }
 ];
 
@@ -155,7 +175,6 @@ export const pricingPlans = [
       "Up to 5 sections (Hero, About, Services, Contact, Footer)",
       "Mobile-friendly layout",
       "Contact form integration",
-      "Basic SEO optimization",
       "Social media links",
       "Modern and clean design",
       "Fast loading performance",
@@ -188,7 +207,6 @@ export const pricingPlans = [
       "Third-party API integrations",
       "E-commerce functionality (if needed)",
       "Real-time features (chat, notifications)",
-      "Advanced SEO optimization",
       "Data visualization & analytics",
       "Email & SMS notifications",
       "File upload & management",
@@ -197,9 +215,6 @@ export const pricingPlans = [
       "Scalable architecture",
       "AI/ML integration (if needed)",
       "Cloud deployment & hosting setup",
-      "Comprehensive testing",
-      "Unlimited revisions during development",
-      "Timeline varies by project scope",
       "Extended post-launch support",
       "Documentation & training",
       "Performance monitoring & optimization"
