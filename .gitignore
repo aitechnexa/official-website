@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 nginx.conf
+
+# Environment
+.env
+.env.*
+!.env.example

@@ -1,152 +1,120 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
+import Logo from './Logo'
+import MagneticButton from './MagneticButton'
+import { navLinks, company } from '../data/company'
+import { useActiveSection } from '../hooks/useActiveSection'
+import { useFocusTrap } from '../hooks/useFocusTrap'
+import { scrollToId } from '../hooks/useSmoothScroll'
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const ids = navLinks.map((l) => l.id)
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Technologies', href: '#technologies' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
-  ];
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+  const active = useActiveSection(ids)
+  const menuRef = useRef(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileMenuOpen]);
+  useFocusTrap(menuRef, open, () => setOpen(false))
 
-  const scrollToSection = (e, href) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    // Small delay to allow menu to close before scrolling
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 300);
-  };
+  const go = (e, id) => {
+    e.preventDefault()
+    setOpen(false)
+    setTimeout(() => scrollToId(id), open ? 250 : 0)
+  }
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-brand-black/80 backdrop-blur-2xl shadow-glass border-b border-white/5' : 'bg-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <motion.a
-              href="#home"
-              onClick={(e) => scrollToSection(e, '#home')}
-              className="text-2xl font-black tracking-tighter text-white cursor-pointer hover:text-brand-accent transition-colors duration-300 relative z-[70]"
-              whileHover={{ scale: 1.05 }}
-            >
-              AiTech Nexa
-            </motion.a>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'border-b border-white/10 bg-void/70 py-3 backdrop-blur-xl' : 'py-5'}`}
+    >
+      <nav aria-label="Main" className="container-x flex items-center justify-between px-5 sm:px-8">
+        <a href="#home" onClick={(e) => go(e, 'home')} className="flex items-center gap-2.5" aria-label={`${company.name} home`}>
+          <Logo />
+          <span className="font-display text-lg font-bold tracking-tight">
+            AiTech <span className="gradient-text">Nexa</span>
+          </span>
+        </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  className="text-gray-300 hover:text-brand-accent transition-colors duration-300 font-semibold relative group"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-              <motion.a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, '#contact')}
-                className="bg-brand-accent px-6 py-3 rounded-full text-white font-bold hover:shadow-glow-lg transition-all duration-300 hover:scale-105"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+        <ul className="hidden items-center gap-1 xl:flex">
+          {navLinks.slice(1, -1).map((l) => (
+            <li key={l.id}>
+              <a
+                href={`#${l.id}`}
+                onClick={(e) => go(e, l.id)}
+                aria-current={active === l.id ? 'true' : undefined}
+                className={`relative rounded-full px-3.5 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${active === l.id ? 'text-cyan' : 'text-muted hover:text-ink'}`}
               >
-                Get Started
-              </motion.a>
-            </div>
+                {active === l.id && (
+                  <motion.span layoutId="nav-pill" className="absolute inset-0 -z-10 rounded-full border border-cyan/30 bg-cyan/10" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />
+                )}
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-white p-3 hover:bg-white/10 rounded-lg transition-colors relative z-[70]"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu - Full Screen */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="md:hidden fixed inset-0 bg-brand-black backdrop-blur-2xl z-[60]"
+        <div className="flex items-center gap-3">
+          <span className="hidden sm:inline-block">
+            <MagneticButton>
+              <a href="#contact" onClick={(e) => go(e, 'contact')} className="btn-primary !py-2.5">
+                Start a Project
+              </a>
+            </MagneticButton>
+          </span>
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-ink transition hover:border-cyan hover:text-cyan xl:hidden"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
           >
-            <div className="flex flex-col items-center justify-center h-screen px-8 space-y-8">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-white hover:text-brand-accent transition-colors duration-300 font-bold text-2xl"
-                >
-                  {link.name}
-                </motion.a>
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            ref={menuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+            initial={{ opacity: 0, clipPath: 'circle(0% at 95% 5%)' }}
+            animate={{ opacity: 1, clipPath: 'circle(150% at 95% 5%)' }}
+            exit={{ opacity: 0, clipPath: 'circle(0% at 95% 5%)' }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 -z-10 flex flex-col justify-center bg-void/95 px-8 backdrop-blur-2xl xl:hidden"
+          >
+            <ul className="space-y-1">
+              {navLinks.map((l, i) => (
+                <motion.li key={l.id} initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + i * 0.05 }}>
+                  <a
+                    href={`#${l.id}`}
+                    onClick={(e) => go(e, l.id)}
+                    className={`block py-2 font-display text-3xl font-bold ${active === l.id ? 'gradient-text' : 'text-ink'}`}
+                  >
+                    {l.label}
+                  </a>
+                </motion.li>
               ))}
-              <motion.a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, '#contact')}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
-                className="bg-brand-accent px-8 py-4 rounded-full text-white font-bold text-xl hover:shadow-glow-lg transition-all duration-300 mt-4"
-              >
-                Get Started
-              </motion.a>
-            </div>
+            </ul>
+            <a href="#contact" onClick={(e) => go(e, 'contact')} className="btn-primary mt-8 self-start">
+              Start a Project
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
-  );
-};
-
-export default Navbar;
+    </header>
+  )
+}

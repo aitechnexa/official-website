@@ -2,7 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#05060A" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Fonts: Space Grotesk (headings), Inter (body), JetBrains Mono (labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    <noscript><style>.preloader{display:none!important}</style></noscript>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
@@ -51,38 +62,28 @@
     <meta name="coverage" content="Worldwide" />
     <meta name="distribution" content="Global" />
     <meta name="rating" content="General" />
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "AiTech Nexa",
-      "alternateName": "AiTech Nexxa",
-      "url": "https://aitechnexa.com",
-      "logo": "https://aitechnexa.com/logo.png",
-      "description": "Empowering the Future with AI-Driven Solutions",
-      "email": "aitechnexa@gmail.com",
-      "telephone": "+6012-3063642",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Selangor",
-        "addressCountry": "MY"
-      },
-      "sameAs": [
-      ],
-      "foundingDate": "2024",
-      "founders": [{
-        "@type": "Person",
-        "name": "AiTech Nexa Team"
-      }],
-      "areaServed": "Worldwide",
-      "serviceType": ["AI Development", "Cloud Integration", "Web Development", "Data Analytics"]
-    }
-    </script>
+    <!-- JSON-LD Organization schema is generated from src/data/seo.js and injected at build time -->
   </head>
-  <body>
+  <body style="background:#05060A">
     <div id="root"></div>
+    <noscript>
+      <div style="max-width:720px;margin:0 auto;padding:6rem 1.5rem;color:#E6EAF2;font-family:Inter,system-ui,sans-serif;line-height:1.6">
+        <h1>AiTech Nexa</h1>
+        <p>Empowering the Future with AI-Driven Solutions. AI-driven IT solutions and software company in Selangor, Malaysia.</p>
+        <h2>Services</h2>
+        <ul>
+          <li>AI &amp; Machine Learning</li>
+          <li>Software Development</li>
+          <li>Web &amp; Mobile Apps</li>
+          <li>Cloud Integration</li>
+          <li>Automation</li>
+          <li>Data Analytics</li>
+        </ul>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:admin@aitechnexa.com" style="color:#22D3EE">admin@aitechnexa.com</a><br />Phone: +6012-3063642<br />Selangor, Malaysia</p>
+        <p>Please enable JavaScript for the full interactive experience.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

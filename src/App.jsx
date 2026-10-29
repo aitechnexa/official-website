@@ -1,29 +1,52 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Services from './components/Services'
-import Portfolio from './components/Portfolio'
-import Pricing from './components/Pricing'
-import Technologies from './components/Technologies'
-import Testimonials from './components/Testimonials'
-import Contact from './components/Contact'
+import { Head } from 'vite-react-ssg/single-page'
+import BackgroundOrbs from './components/BackgroundOrbs'
+import CustomCursor from './components/CustomCursor'
 import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+import Preloader from './components/Preloader'
+import ScrollProgress from './components/ScrollProgress'
+import { organizationJsonLd } from './data/seo'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
+import About from './sections/About'
+import Contact from './sections/Contact'
+import Hero from './sections/Hero'
+import Portfolio from './sections/Portfolio'
+import Pricing from './sections/Pricing'
+import Process from './sections/Process'
+import Services from './sections/Services'
+import TechStack from './sections/TechStack'
+import Testimonials from './sections/Testimonials'
 
-function App() {
+export default function App() {
+  useSmoothScroll()
   return (
-    <div className="min-h-screen bg-brand-black text-white overflow-x-hidden antialiased">
+    <>
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(organizationJsonLd)}</script>
+      </Head>
+      <Preloader />
+      <BackgroundOrbs />
+      <ScrollProgress />
+      <CustomCursor />
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-cyan focus:px-5 focus:py-3 focus:font-semibold focus:text-void"
+      >
+        Skip to content
+      </a>
       <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Portfolio />
-      <Pricing />
-      <Technologies />
-      <Testimonials />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <About />
+        <Services />
+        <Portfolio />
+        <Pricing />
+        <TechStack />
+        <Process />
+        <Testimonials />
+        <Contact />
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }
-
-export default App
