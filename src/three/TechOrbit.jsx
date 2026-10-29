@@ -8,7 +8,7 @@ import { getThemeColors } from './theme'
 
 const RADIUS = 3.8
 
-function Orbit({ active }) {
+function Orbit({ active, portal }) {
   const group = useRef()
   const speed = useRef(0.12)
   const pointer = useRef(0)
@@ -46,7 +46,7 @@ function Orbit({ active }) {
         <meshBasicMaterial color={c.cyan} transparent opacity={0.35} />
       </mesh>
       {points.map((p, i) => (
-        <Html key={techStack[i].name} position={p} center distanceFactor={13} zIndexRange={[20, 0]}>
+        <Html key={techStack[i].name} portal={portal} position={p} center distanceFactor={13} zIndexRange={[20, 0]}>
           <div className="flex select-none flex-col items-center gap-1.5 rounded-xl border border-white/10 bg-surface/80 px-3 py-2 backdrop-blur-md">
             <TechIcon name={techStack[i].icon} color={techStack[i].color} className="h-7 w-7" />
             <span className="whitespace-nowrap font-mono text-[10px] text-muted">{techStack[i].name}</span>
@@ -59,14 +59,19 @@ function Orbit({ active }) {
 
 // Standalone canvas for the Tech Stack section. Lazy-loaded; `active` pauses it when off-screen.
 export default function TechOrbit({ active = true }) {
+  // Stable portal target for <Html>: drei otherwise switches its container after mount (events.connected),
+  // which unmounts/remounts its React root mid-render and logs a warning.
+  const containerRef = useRef(null)
   return (
-    <Canvas
-      dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 9], fov: 50 }}
-      gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
-      frameloop={active ? 'always' : 'never'}
-    >
-      <Orbit active={active} />
-    </Canvas>
+    <div ref={containerRef} className="relative h-full w-full overflow-hidden">
+      <Canvas
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 9], fov: 50 }}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+        frameloop={active ? 'always' : 'never'}
+      >
+        <Orbit active={active} portal={containerRef} />
+      </Canvas>
+    </div>
   )
 }
