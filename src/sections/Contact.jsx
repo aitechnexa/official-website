@@ -7,8 +7,9 @@ import SectionHeading from '../components/SectionHeading'
 import { company } from '../data/company'
 import { services } from '../data/services'
 
-// TODO: set VITE_WEB3FORMS_KEY in .env (see .env.example). To switch to EmailJS/Formspree, change only submitForm() below.
-const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+// Web3Forms access keys are public by design (restrict this one to aitechnexa.com in the Web3Forms dashboard).
+// VITE_WEB3FORMS_KEY (see .env.example) overrides the fallback. To switch to EmailJS/Formspree, change only submitForm() below.
+const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || '27eed8d8-fd7e-47ff-baf8-5ba97935f802'
 const projectTypes = [...services.map((s) => s.title), 'Other']
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
